@@ -1,0 +1,8 @@
+﻿id;дата;время;площадка;формат;статус;текст;медиа;комментарий
+test-tg-post;2026-09-28;10:00;telegram;пост;черновик;"**Тестовый пост** автопостера.
+
+Если вы это видите — публикация в канал работает. Пост можно удалить.";;Задача 6: тест поста в ТГ
+test-tg-album;2026-09-28;10:05;telegram;пост;черновик;Тест альбома из трёх картинок.;media/test/carousel_test_1.jpg|media/test/carousel_test_2.jpg|media/test/carousel_test_3.jpg;Тест альбома в ТГ
+test-tg-story;2026-09-28;10:10;telegram;сторис;черновик;;media/test/story_test.jpg;Тест сторис в ТГ (нужны бусты)
+test-ig-carousel;2026-09-28;10:15;instagram;карусель;черновик;Тестовая карусель. Удалить после проверки.;media/test/carousel_test_1.jpg|media/test/carousel_test_2.jpg|media/test/carousel_test_3.jpg;Тест карусели в ИГ
+test-ig-story;2026-09-28;10:20;instagram;сторис;черновик;;media/test/story_test.jpg;Тест сторис в ИГ
