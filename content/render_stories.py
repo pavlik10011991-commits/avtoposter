@@ -22,8 +22,10 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 .pill{display:inline-block;margin-top:48px;padding:22px 50px;border:3px solid #F4ECDF;border-radius:80px;font:700 36px Montserrat;letter-spacing:.08em}
 """
 
+PILL = "СЕГОДНЯ В 19:00"
+
 def story(photo, pos, label, head, sub, topic):
-    pill = '<div class="pill">СЕГОДНЯ В 19:00</div>' if topic else ""
+    pill = f'<div class="pill">{PILL}</div>' if topic else ""
     if topic:
         sub = sub.replace(" · сегодня в 19:00", "").replace("сегодня в 19:00", "").replace(" · разбор в 19:00", "").strip(" ·")
     bp = pos if " " in pos else "center " + pos
@@ -39,6 +41,7 @@ def main():
     with sync_playwright() as pw:
         br = pw.chromium.launch(); pg = br.new_page(viewport={"width": 1080, "height": 1920})
         for d in m.DAYS:
+            global PILL; PILL = d.get("pill", "СЕГОДНЯ В 19:00")
             out = ROOT / "media" / d["date"]; out.mkdir(parents=True, exist_ok=True)
             for name, key, ph, topic in (("story_1_wish", "wish", "wish_photo", False), ("story_2_topic", "topic", "topic_photo", True)):
                 pg.set_content(f"<html><head><meta charset='utf-8'><style>{fonts}{CSS}</style></head><body>{story(*d[ph], *d[key], topic)}</body></html>")
