@@ -88,7 +88,7 @@ for (const el of document.querySelectorAll('[data-fit]')) {
 def esc(s): return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 def body_text(t):
-    t = esc(t)
+    t = esc(t).replace("\n", "<br>")
     if "[ПРОВЕРИТЬ" in t:
         i = t.index("[ПРОВЕРИТЬ")
         t = t[:i] + f'<br><span class="flag">{t[i:]}</span>'
@@ -97,6 +97,10 @@ def body_text(t):
 def slide_html(c, k, total, photo_cover, photo_ava):
     label, head, text = c["slides"][k]
     handle = '<div class="handle">@toymurzina_buh</div>'
+    if k == 0 and c.get("raw"):  # готовая обложка от Любови: фото целиком + плашка снизу
+        return f"""<div class="s" style="background:#151412"><div style="position:absolute;left:0;top:0;width:1080px;height:1080px;background-size:cover;background-image:url(data:image/jpeg;base64,{photo_cover})"></div>
+<div style="position:absolute;left:0;top:960px;width:1080px;height:120px;background:linear-gradient(180deg,rgba(21,20,18,0),#151412)"></div>
+<div style="position:absolute;left:0;right:0;top:1130px;text-align:center"><span style="display:inline-block;padding:24px 56px;border:3px solid #F4ECDF;border-radius:80px;font:700 38px Montserrat;letter-spacing:.12em">{esc(c["raw"])}</span></div></div>"""
     if k == 0:
         # Инстаграм-карусель: на обложке боль + призыв перейти в ТГ (правило Любови 04.10)
         tg = total > 1 and c.get("cover_cta", True)
